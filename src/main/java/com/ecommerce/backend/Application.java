@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 
 import com.ecommerce.backend.dao.ProductRepository;
 import com.ecommerce.backend.entity.Product;
@@ -12,12 +13,15 @@ import com.ecommerce.backend.entity.Product;
 public class Application implements CommandLineRunner{
 	@Autowired 
 	private ProductRepository productrepo; 
+	@Autowired 
+	private RepositoryRestConfiguration restConfiguration;
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
+		restConfiguration.exposeIdsFor(Product.class);
 	/*
 		productrepo.save(
 	new Product(null,"White Zara Tshirt","ZARA","White cotton shirt from ZARA, made in Spain.",15,"XS - M - L - XL", "White"));

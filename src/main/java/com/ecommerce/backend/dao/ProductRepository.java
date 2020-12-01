@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.ecommerce.backend.entity.Product;
@@ -15,6 +16,9 @@ import com.ecommerce.backend.entity.Product;
 @CrossOrigin("*")
 @RepositoryRestResource
 public interface ProductRepository extends JpaRepository<Product, Long>{
+	@RestResource(path="/products")
+	@PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+	public List<Product> findAll();
 	@RestResource(path="/ByTitle")
 	public List<Product> findByTitleContains(@Param("title") String title);
 	@RestResource(path="/ByTitlePage")

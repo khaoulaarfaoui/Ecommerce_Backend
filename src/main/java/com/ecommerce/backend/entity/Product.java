@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,6 +29,8 @@ private String description;
 private int price;
 private String AvailableSize; 
 private String Color;
+@OneToOne
+private FileDB fileDB;
 public Product(Long id, String title, String brand, String description, int price, String availableSize, String color) {
 	super();
 	this.id = id;
@@ -79,6 +82,13 @@ public void setColor(String color) {
 }
 public Long getId() {
 	return id;
+}
+
+public FileDB getFileDB() {
+	return fileDB;
+}
+public void setFileDB(FileDB fileDB) {
+	this.fileDB = fileDB;
 }
 @Override
 public String toString() {
