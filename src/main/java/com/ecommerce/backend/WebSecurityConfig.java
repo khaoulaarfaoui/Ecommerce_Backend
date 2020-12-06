@@ -14,6 +14,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 import com.ecommerce.backend.security.jwt.AuthEntryPointJwt;
 import com.ecommerce.backend.security.jwt.AuthTokenFilter;
@@ -27,6 +28,13 @@ import com.ecommerce.backend.security.Service.UserDetailsServiceImpl;
 		// jsr250Enabled = true,
 		prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+	
+
+	
+	    public void addCorsMappings(CorsRegistry registry) {
+	        registry.addMapping("/**").allowedOrigins("http://localhost:4200");
+	    }
+	
 	@Autowired
 	UserDetailsServiceImpl userDetailsService;
 
@@ -66,6 +74,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/upload/**").permitAll()
 			.antMatchers("/get/**").permitAll()
 			.antMatchers("/image/**").permitAll()
+			.antMatchers("/payment**").permitAll()
+
 			.antMatchers(HttpMethod.OPTIONS).permitAll()
 			.anyRequest().authenticated();
 

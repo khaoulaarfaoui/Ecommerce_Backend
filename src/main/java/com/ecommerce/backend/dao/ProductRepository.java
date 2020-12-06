@@ -13,14 +13,16 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.ecommerce.backend.entity.Product;
 
-@CrossOrigin("*")
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RepositoryRestResource
 public interface ProductRepository extends JpaRepository<Product, Long>{
 	@RestResource(path="/products")
 	@PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
 	public List<Product> findAll();
 	@RestResource(path="/ByTitle")
+	@PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
 	public List<Product> findByTitleContains(@Param("title") String title);
 	@RestResource(path="/ByTitlePage")
+	@PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
 	public Page<Product> findByTitleContains(@Param("title") String title, Pageable pageable);
 }

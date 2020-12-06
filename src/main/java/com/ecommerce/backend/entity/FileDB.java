@@ -24,6 +24,15 @@ public class FileDB {
 		this.type = type;
 		this.picByte = picByte;
 	}
+
+	public FileDB(Long id, String name, String type, byte[] picByte) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.type = type;
+		this.picByte = picByte;
+	}
+
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

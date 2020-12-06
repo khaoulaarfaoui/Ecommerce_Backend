@@ -37,7 +37,7 @@ import com.ecommerce.backend.payload.response.MessageResponse;
 import com.ecommerce.backend.payload.response.ResponseFile;
 import com.ecommerce.backend.security.Service.FileStorageService;
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RequestMapping(path = "image")
 public class FileController {
 	 @Autowired
@@ -92,6 +92,7 @@ public class FileController {
 				decompressBytes(retrievedImage.get().getPicByte()));
 		return img;
 	}
+	//get Image by name
 	@GetMapping(path = { "/get/{imageName}" })
 	public FileDB getImage(@PathVariable("imageName") String imageName) throws IOException {
 		final Optional<FileDB> retrievedImage = imageRepository.findByName(imageName);

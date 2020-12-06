@@ -30,7 +30,7 @@ import com.ecommerce.backend.dao.UserRepository;
 import com.ecommerce.backend.security.jwt.JwtUtils;
 import com.ecommerce.backend.security.Service.UserDetailsImpl;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {

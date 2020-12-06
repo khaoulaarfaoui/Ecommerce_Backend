@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 
 import com.ecommerce.backend.dao.ProductRepository;
-import com.ecommerce.backend.entity.Product;
+import com.ecommerce.backend.entity.*;
 
 @SpringBootApplication
 public class Application implements CommandLineRunner{
@@ -22,6 +22,7 @@ public class Application implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		restConfiguration.exposeIdsFor(Product.class);
+		restConfiguration.exposeIdsFor(FileDB.class);
 	/*
 		productrepo.save(
 	new Product(null,"White Zara Tshirt","ZARA","White cotton shirt from ZARA, made in Spain.",15,"XS - M - L - XL", "White"));
